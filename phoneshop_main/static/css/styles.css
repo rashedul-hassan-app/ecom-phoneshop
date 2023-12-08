@@ -1,0 +1,10 @@
+.card-custom-title {
+    flex-grow: 1;
+
+}
+
+.card-custom-description {
+    flex-grow: 1;
+    height: 6em;
+    overflow: hidden;
+}
