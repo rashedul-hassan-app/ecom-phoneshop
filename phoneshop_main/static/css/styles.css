@@ -1,10 +1,26 @@
 .card-custom-title {
     flex-grow: 1;
-
+    text-align: center;
+    color: rgba(53, 51, 51, 0.8);
+    padding-bottom: 6px;
 }
+
+.card-custom-price {
+    flex-grow: 1;
+    text-align: center;
+}
+
 
 .card-custom-description {
     flex-grow: 1;
     height: 6em;
     overflow: hidden;
+    text-align: center;
+    color: rgba(53, 51, 51, 0.8)
+}
+
+.sale-badge {
+    position: absolute;
+    top: -10px;
+    left: 40%;
 }

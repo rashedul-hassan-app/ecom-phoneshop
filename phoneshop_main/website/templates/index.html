@@ -8,18 +8,37 @@ example
         <div class="row gx-4 gx-lg-5 rows-cols-2 rows-cols-md-3 rows-cols-xl-4 justify-content-center">
         
             {% for product in products %}
-            <!-- One Card design -->
-            <div class="col mb-5">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title card-custom-title">{{ product.name }}</h5>
-                        <p class="card-text card-custom-description">{{ product.description }}</p>
-                        <div class="text-center"><a href="#" class="btn btn-primary">BUY </a></div>
+                {% if product.is_sale %}
+                    <!-- Sale Card design -->
+                    <div class="col mb-5">
+                        <div class="card h-100 d-flex flex-column">
+                            <div class="badge text-bg-danger sale-badge">Sale</div>
+                            <img src="{{ product.image.url }}" class="card-img-top pt-4" alt="{{ product.name }}">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title card-custom-title">{{ product.name }}</h5>
+                                <h5 class="card-title card-custom-price"><strike>£{{ product.price}}</strike> &nbsp; £{{ product.sale_price }}</h5>
+                                <p class="card-text card-custom-description">{{ product.description }}</p>
+                                <div class="text-center"><a href="#" class="btn btn-primary">BUY </a></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <!-- end of card design -->
+                    <!-- end of Sale card design -->
+                {% else %}
+                    <!-- One Card design -->
+                    <div class="col mb-5">
+                        <div class="card h-100 d-flex flex-column">
+                            <img src="{{ product.image.url }}" class="card-img-top pt-4" alt="...">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title card-custom-title">{{ product.name }}</h5>
+                                <h5 class="card-title card-custom-price">£{{ product.price }}</h5>
+                                <p class="card-text card-custom-description">{{ product.description }}</p>
+                                <div class="text-center"><a href="#" class="btn btn-primary">BUY </a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of card design -->
+                    
+                {% endif %}
             {% endfor %}
         </div>
         
