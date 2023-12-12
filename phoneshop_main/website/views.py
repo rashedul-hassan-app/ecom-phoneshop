@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import Product
-# Create your views here.
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
+from django import forms
 
 
 def index(request):
@@ -32,3 +35,32 @@ def logout_user(request):
     logout(request)
     messages.error(request, ("You have been logged out!"))
     return redirect('index')
+
+
+def register_user(request):
+    form = SignUpForm()
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            # log the user in
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            messages.success(
+                request, ('Registration successful. Welcome ' + username + '!'))
+            return redirect('index')
+        else:
+            for field, errors in form.errors.items():
+                # for error in errors:
+                error_message = ', '.join(errors)
+                if field in ['password1', 'password2']:
+                    error_message += '. Password must be 8 characters long'
+                messages.error(
+                    request, f'{field.capitalize()}: {error_message}')
+            return redirect('register')
+    else:
+        return render(request, 'register.html', {'form': form})
