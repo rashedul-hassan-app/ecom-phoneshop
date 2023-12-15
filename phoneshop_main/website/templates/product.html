@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="card mb-3 mt-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ product.image.url }}" class="img-fluid rounded-start p-5" alt="{{ product.name }}" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body mt-5">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+
+                    {% if product.is_sale %}
+                        <p class="card-text">
+                            <small class="text-body-secondary">
+                                <strike>£{{product.price}}</strike> 
+                                &nbsp;&nbsp; 
+                            £{{product.sale_price}}
+                            </small>
+                        </p>
+                    {% else %}
+                        <p class="card-text"><small class="text-body-secondary">£{{product.price}}</small></p>
+                    {% endif %}
+                </div>
+                
+                <a href="{% url 'index' %}" class="btn btn-primary mx-2">Add to Cart</a>
+                <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+{% endblock %}

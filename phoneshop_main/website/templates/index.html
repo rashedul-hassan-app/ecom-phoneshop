@@ -18,7 +18,7 @@ example
                                 <h5 class="card-title card-custom-title">{{ product.name }}</h5>
                                 <h5 class="card-title card-custom-price"><strike>£{{ product.price}}</strike> &nbsp; £{{ product.sale_price }}</h5>
                                 <p class="card-text card-custom-description">{{ product.description }}</p>
-                                <div class="text-center"><a href="#" class="btn btn-primary">BUY </a></div>
+                                <div class="text-center"><a href="{% url 'product' product.id %}" class="btn btn-primary">View </a></div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@ example
                                 <h5 class="card-title card-custom-title">{{ product.name }}</h5>
                                 <h5 class="card-title card-custom-price">£{{ product.price }}</h5>
                                 <p class="card-text card-custom-description">{{ product.description }}</p>
-                                <div class="text-center"><a href="#" class="btn btn-primary">BUY </a></div>
+                                <div class="text-center"><a href="{% url 'product' product.id %}" class="btn btn-primary">View </a></div>
                             </div>
                         </div>
                     </div>
