@@ -23,13 +23,37 @@
                     {% else %}
                         <p class="card-text"><small class="text-body-secondary">£{{product.price}}</small></p>
                     {% endif %}
+                    <p><small>Product ID: {{product.id}}</small></p>
                 </div>
                 
-                <a href="{% url 'index' %}" class="btn btn-primary mx-2">Add to Cart</a>
+                <button type="button" value="{{ product.id }}" id="add-cart" class="btn btn-primary mx-2">Add to Cart</button>
                 <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Back to Home</a>
             </div>
         </div>
     </div>
 </div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<script>
+    $(document).on("click", "#add-cart", function (e) {
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url: "{% url 'cart_add' %}",
+		data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+			product_id: $(this).val(),
+			action: "post",
+		},
+
+		success: function (json) {
+			console.log(json);
+		},
+
+		error: function (xhr, errormsg, err) {
+			console.log("ERROR in Ajax:");
+			console.log(err);
+		},
+	});
+});
+</script>
 {% endblock %}
