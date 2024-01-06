@@ -26,7 +26,8 @@ class Cart():
         self.session.modified = True
 
     def __len__(self):
-        return len(self.cart)
+        # return len(self.cart)
+        return sum(item for item in self.cart.values())
 
     def get_prods(self):
         # Get ids from my cart
