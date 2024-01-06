@@ -33,13 +33,34 @@
                                         {{ product.price }}
                                     {% endif %}
                                 </div>
-                                ADD_QUANTITY_HERE
+                                <div class="d-flex align-items-end my-4 mx-3 px-3">
+                                    <div class="row justify-content-start mx-2">
+                                        <div class="text-center py-2">Quantity</div>
+                                        <div >
+                                            <select class="form-select form-select-sm" id="qty-cart" aria-label="item quantity">
+                                                    {% for key, value in quantities.items %}
+                                                        {% if key == product.id|slugify %}
+                                                        <option selected>{{ value }}</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Home</a>
+                                </div>
                             </center>
                         </div>
+                       
+
+                           
+                        
                     </div>
-                    <div class="col-md-2 d-flex align-items-center m-auto">
-                        <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Home</a>
-                    </div>
+                    
                 </div>      
             </div>
         {% endfor %}
