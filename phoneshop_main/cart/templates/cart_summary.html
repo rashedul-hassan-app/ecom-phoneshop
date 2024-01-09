@@ -37,7 +37,7 @@
                                     <div class="row justify-content-start mx-2">
                                         <div class="text-center py-2">Quantity</div>
                                         <div >
-                                            <select class="form-select form-select-sm" id="qty-cart" aria-label="item quantity">
+                                            <select class="form-select form-select-sm" id="select{{product.id}}" aria-label="item quantity">
                                                     {% for key, value in quantities.items %}
                                                         {% if key == product.id|slugify %}
                                                         <option selected>{{ value }}</option>
@@ -73,7 +73,30 @@
     {% endif %}
     
 </div>
+<script>
+    $(document).on('click', '.update-cart', function(e) {
+        e.preventDefault();
+        // get the product id 
+        var productid = $(this).data('index');
 
+        $.ajax({
+            type: "POST",
+            url: "{% url 'cart_update' %}",
+            data: {
+                product_id: $(this).data('index'),
+                product_qty: $('#select' + productid + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function(json) {
+                console.log(json);
+                document.getElementById('cart_quantity').textContent = json.qty;
+                location.reload();
+            },
+            error: function(xhr, errmsg, err) { console.log(errmsg); }
+        });
+    });
+</script>
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
