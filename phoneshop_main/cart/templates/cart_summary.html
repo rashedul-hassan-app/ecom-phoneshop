@@ -52,9 +52,14 @@
                                         </div>
                                     </div>
                                     <a href="{% url 'index' %}" class="btn btn-secondary mx-2">Home</a>
+                                    
                                     <button type="button" data-index="{{product.id}}" 
                                         class="btn btn-secondary update-cart">
                                         Update
+                                    </button>
+                                    <button type="button" data-index="{{product.id}}" 
+                                        class="mx-2 btn btn-danger delete-product">
+                                        Remove
                                     </button>
                                 </div>
                             </center>
@@ -96,6 +101,26 @@
             error: function(xhr, errmsg, err) { console.log(errmsg); }
         });
     });
+
+    $(document).on('click', '.delete-product', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_delete' %}",
+            data: {
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function(json) {
+                console.log(json);
+                location.reload();
+            },
+            error: function(xhr, errmsg, err) { console.log(errmsg) }
+        });
+    });
+
 </script>
 
 
