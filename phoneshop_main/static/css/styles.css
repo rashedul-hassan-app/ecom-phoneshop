@@ -36,3 +36,37 @@
     /* width: 75%; */
     margin: auto;
 }
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+.cart-summary {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .cart-container {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .cart-items {
+        width: 65%;
+    }
+
+    .cart-summary {
+        width: 30%;
+    }
+}
+
+
