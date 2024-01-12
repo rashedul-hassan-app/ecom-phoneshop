@@ -14,7 +14,7 @@
         {% for product in cart_products %}
             <div class="card mb-3 mt-3 card-size">
                 <div class="row g-0 mt-2">
-                    <div class="col-md-4 mt-2">
+                    <div class="col-md-4 mt-2 text-center">
                         <img src="{{ product.image.url}}" class="img-fluid rounded-start img-small" alt="Your item"/>
                     </div>
                     <div class="col-md-5">
@@ -64,19 +64,14 @@
                                 </div>
                             </center>
                         </div>
-                       
-
-                           
-                        
-                    </div>
-                    
+                    </div>         
                 </div>      
             </div>
-        {% endfor %}
-    {% else %}
-        <p><h1>Your basket is empty. Add an item to your cart.</h1></p>
-    {% endif %}
-    
+            {% endfor %}
+            <h3 class="">Total: £{{ totals }}</h3> 
+            {% else %}
+            <p><h1>Your basket is empty. Add an item to your cart.</h1></p>
+            {% endif %}
 </div>
 <script>
     $(document).on('click', '.update-cart', function(e) {
