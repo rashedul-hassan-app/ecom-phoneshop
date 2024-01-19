@@ -4,6 +4,7 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from cart.cart import Cart
 
 
 def HomePageView(request):
@@ -30,6 +31,11 @@ def create_checkout_session(request):
     if request.method == 'GET':
         domain_url = 'http://localhost:8000/payments/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        cart = Cart(request)
+        total_amount_pounds = cart.cart_total()
+
+        total_amount_pence = int(total_amount_pounds * 100)
         try:
             # Create new Checkout Session for the order
             # Other optional params include:
@@ -54,12 +60,16 @@ def create_checkout_session(request):
                 cancel_url=domain_url + 'cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
-                line_items=[
-                    {
-                        'price': 'price_1OYvIwLrecuek42D0XsOdTw5',
-                        'quantity': 1,
-                    }
-                ]
+                line_items=[{
+                    'price_data': {
+                            'currency': 'GBP',
+                            'product_data': {
+                                'name': 'Total Basket Cost',
+                            },
+                            'unit_amount': total_amount_pence,
+                            },
+                    'quantity': 1,
+                }],
             )
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
