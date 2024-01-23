@@ -50,6 +50,11 @@ class Cart():
 
         self.session.modified = True
 
+    def clear(self):
+        self.cart.clear()
+        self.session.modified = True
+        self.session.save()
+
     def get_prods(self):
         # Get ids from my cart
         product_ids = self.cart.keys()
