@@ -8,6 +8,7 @@ from cart.cart import Cart
 
 
 def HomePageView(request):
+    cart = Cart()
     return render(request, 'home.html', {})
 
 

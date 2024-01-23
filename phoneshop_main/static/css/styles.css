@@ -59,3 +59,8 @@
     }
 }
 
+.success-header {
+    /* header height occupies the full screen, 
+    minus the height of footer and the top nav bar*/
+    height: calc(100vh - 120px - 56px); 
+}
