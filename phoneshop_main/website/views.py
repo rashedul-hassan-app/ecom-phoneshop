@@ -75,12 +75,12 @@ def category(request, foo):
     foo = foo.replace('-', ' ')
 
     try:
-        print('line 78')
-        # Look up the category
         category = Category.objects.get(name=foo)
-        print('line 80')
         products = Product.objects.filter(category=category)
-        print('line 82')
+        if foo == 'All':
+            products = Product.objects.all()
+            category = 'All products'
+
         return render(request, 'category.html', {'products': products, 'category': category})
     except:
         messages.error(request, ("The category does not exist ..."))
