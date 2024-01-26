@@ -4,8 +4,9 @@ from django.contrib import messages
 from .models import Product, Category
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm
+from .forms import SignUpForm, ProductForm
 from django import forms
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -85,3 +86,12 @@ def category(request, foo):
     except:
         messages.error(request, ("The category does not exist ..."))
         return redirect('index')
+
+
+@login_required
+def add_product(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = ProductForm()
+    return render(request, 'add_product.html', {'form': form})

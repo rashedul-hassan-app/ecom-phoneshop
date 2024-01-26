@@ -64,3 +64,20 @@
     minus the height of footer and the top nav bar*/
     min-height: calc(100vh - 120px - 56px); 
 }
+
+.product-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.product-form--submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}   
+
+.form-control-gray {
+    color: gray;
+}

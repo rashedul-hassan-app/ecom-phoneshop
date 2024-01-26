@@ -29,6 +29,12 @@
         </ul>
 
         <form class="d-flex">
+          {% if user.is_authenticated and user.is_superuser %}
+          <a href="{% url 'add_product' %}" class="btn btn-outline-dark mx-2">
+            <i class="bi bi-file-earmark-plus"></i>
+              Add Product
+          </a>
+          {% endif %}
           <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark" type="submit">
             <i class="bi-cart-fill me-1"></i>
               Cart
