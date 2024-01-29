@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<header class="bg-secondary py-5 bodys-container">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+           <h1 class="display-4 fw-bolder">404! 404! 404!</h1>
+           <p class="lead fw-normal text-white-50 mb-0">You seem lost. Or the page you are looking for has been moved!</p>
+           <a href="{% url 'index' %}" class="btn btn-primary my-4 mx-2">Go back Home</a>                       
+        </div>
+    </div>
+</header>
+
+{% endblock %}

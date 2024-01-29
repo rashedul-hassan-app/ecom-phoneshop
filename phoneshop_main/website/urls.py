@@ -10,3 +10,5 @@ urlpatterns = [
     path('category/<str:foo>', views.category, name='category'),
     path('add_product', views.add_product, name='add_product'),
 ]
+
+handler404 = 'website.views.error_404_view'

@@ -102,3 +102,7 @@ def add_product(request):
     else:
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
+
+
+def error_404_view(request, exception):
+    return render(request, '404.html')
