@@ -91,7 +91,14 @@ def category(request, foo):
 @login_required
 def add_product(request):
     if request.method == 'POST':
-        pass
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product added successfully')
+            return redirect('index')
+        else:
+            messages.error(
+                request, 'Error whilst saving product. Please try again.')
     else:
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
