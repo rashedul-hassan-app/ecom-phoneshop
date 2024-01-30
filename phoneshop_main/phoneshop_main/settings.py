@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 from pathlib import Path
 import os
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-di7zr9_zjv6&60y=f3oiub3(kx=*ru4j%e8$d%88^n-yh%+!9i'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -129,6 +129,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51OYvCZLrecuek42Db2x0edtzc3CLEiwmcueBGnVel7HxKq77bgBCm018yYEh1I9uFYUXtSU2ijU8ujUAJqjaLsH300inlifN9H'
-STRIPE_SECRET_KEY = 'sk_test_51OYvCZLrecuek42D3zMQMAI8tnv7Dot96Q9tB8DPDRNOttJ5YIyQxyu3aAm1uOBEkKeUTRp5JaoxMiic8xM7iQ5Q00290JXtux'
-STRIPE_ENDPOINT_SECRET = 'whsec_6456ab783077a398caeb9fc704537452b3b67537c6b61e404ec71ded21618927'
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
