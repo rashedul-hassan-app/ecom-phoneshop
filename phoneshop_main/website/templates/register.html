@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<head>
+    <title>Registration page</title>
+    <meta name="description" content="PhoneShop - Create your account to get started">
+</head>
 <div class="bodys-container">
     <header class="bg-dark py-5">
         <div class="container">
@@ -17,7 +21,10 @@
                     {% csrf_token %}
 
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-secondary">Register</button>
+                    <div class="center-form-buttons">
+                        <button type="submit" class="btn btn-secondary">Register</button>
+                        <div class="mt-3">Already have an account? &nbsp;<a href="{% url 'login' %}">Log in</a></div>
+                    </div>
                 </form>
             </div>
         </div>
