@@ -117,10 +117,30 @@ def newsletters(request):
         name = request.POST.get('name', None)
         email = request.POST.get('email', None)
 
+        subscribe_user = SubscribedUsers.objects.filter(email=email).first()
+        if subscribe_user:
+            messages.error(
+                request, 'This email is already subscribed! Try a different email.')
+            return render(request, 'newsletters.html', {'form': form})
+
         if not name or not email:
             messages.error(
                 request, 'A name and a valid email is required to subscribe')
             return render(request, 'newsletters.html', {'form': form})
+
+        try:
+            validate_email(email)
+        except ValidationError as e:
+            messages.error(request, e.messages[0])
+            return render(request, 'newsletters.html', {'form': form})
+
+        subscribe_model_instance = SubscribedUsers()
+        subscribe_model_instance.name = name
+        subscribe_model_instance.email = email
+        subscribe_model_instance.save()
+        messages.success(
+            request, f'{email} was successfully subscribed to our newsletters')
+        return redirect('/')
     else:
         form = NewsletterForm(request.POST)
     return render(request, 'newsletters.html', {'form': form})
