@@ -88,6 +88,11 @@ class ViewTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
+    def test_newsletters_view(self):
+        response = self.client.get(reverse('newsletters'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'newsletters.html')
+
     def test_add_product_view_not_available_for_non_admin(self):
         response = self.client.get(reverse('add_product'))
         self.assertEqual(response.status_code, 302)

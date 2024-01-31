@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Product, Category
+from .models import Product, Category, SubscribedUsers
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, ProductForm
+from .forms import SignUpForm, ProductForm, NewsletterForm
 from django import forms
 from django.contrib.auth.decorators import login_required
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 
 
 def index(request):
@@ -106,3 +108,19 @@ def add_product(request):
 
 def error_404_view(request, exception):
     return render(request, '404.html')
+
+
+def newsletters(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+
+        name = request.POST.get('name', None)
+        email = request.POST.get('email', None)
+
+        if not name or not email:
+            messages.error(
+                request, 'A name and a valid email is required to subscribe')
+            return render(request, 'newsletters.html', {'form': form})
+    else:
+        form = NewsletterForm(request.POST)
+    return render(request, 'newsletters.html', {'form': form})

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Product
+from .models import Product, SubscribedUsers
 
 
 class SignUpForm(UserCreationForm):
@@ -85,3 +85,22 @@ class ProductForm(forms.ModelForm):
         self.fields['sale_price'].widget.attrs['placeholder'] = 'Sale price'
         self.fields['sale_price'].label = 'Sale Price'
         self.fields['sale_price'].help_text = ''
+
+
+class NewsletterForm(forms.ModelForm):
+    class Meta:
+        model = SubscribedUsers
+        fields = ['name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(NewsletterForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs['class '] = 'form-control form-control-gray'
+        self.fields['name'].widget.attrs['placeholder'] = ''
+        self.fields['name'].label = 'Your Name'
+        self.fields['name'].help_text = ''
+
+        self.fields['email'].widget.attrs['class '] = 'form-control form-control-gray'
+        self.fields['email'].widget.attrs['placeholder'] = ''
+        self.fields['email'].label = 'Your email'
+        self.fields['email'].help_text = ''
