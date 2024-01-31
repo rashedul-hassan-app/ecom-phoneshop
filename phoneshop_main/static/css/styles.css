@@ -62,7 +62,7 @@
 .bodys-container {
     /* header height occupies the full screen, 
     minus the height of footer and the top nav bar*/
-    min-height: calc(100vh - 120px - 56px); 
+    min-height: calc(100vh - 112px - 56px); 
 }
 
 .product-form {
@@ -86,4 +86,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.newsletter-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+.newsletter-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+.newsletter-link {
+    text-decoration: none;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5)
 }
