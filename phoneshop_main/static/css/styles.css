@@ -102,3 +102,31 @@
     text-align: center;
     color: rgba(255, 255, 255, 0.5)
 }
+
+.product--container {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 1000px) {
+    .product--container {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+.advertisement {
+    margin-top: 3rem;
+}
+
+.advertisement--img {
+    width: 350px;
+}
+
+.advertisement--link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(79, 69, 69);
+}

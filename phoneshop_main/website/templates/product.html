@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <head>
     <title>Product page</title>
     <meta name="description" content="Get details about your product">
@@ -12,7 +13,7 @@
         </div>
     </div>
 </header>
-<div class="container">
+<div class="container product--container">
     <div class="card mb-3 mt-5">
         <div class="row g-0">
             <div class="col-md-4">
@@ -55,6 +56,16 @@
             </div>
         </div>
     </div>
+
+    <a class="advertisement--link" href="https://www.apple.com" rel="sponsored noopener noreferrer" target="_blank">
+        <div class="advertisement">
+            <div class="mb-1">ADVERTISEMENT</div>
+            <img src="{% static ad_img %}" class="advertisement--img" alt="Visit Apple">
+            <div class="advertisement--link">
+                Visit Apple! <i class="bi bi-box-arrow-up-right"></i>
+            </div>
+        </div>
+    </a>
 </div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <script>

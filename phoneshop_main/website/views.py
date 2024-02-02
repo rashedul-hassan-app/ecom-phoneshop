@@ -9,6 +9,7 @@ from django import forms
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+import random
 
 
 def index(request):
@@ -70,8 +71,19 @@ def register_user(request):
 
 
 def product(request, pk):
+    images = [
+        'assets/images/ad1.png',
+        'assets/images/ad2.png',
+        'assets/images/ad3.png',
+        'assets/images/ad4.png',
+        'assets/images/ad5.png',
+        'assets/images/ad6.png',
+        'assets/images/ad7.png',
+    ]
+    random_image = random.choice(images)
+
     product = Product.objects.get(id=pk)
-    return render(request, 'product.html', {'product': product})
+    return render(request, 'product.html', {'product': product, 'ad_img': random_image})
 
 
 def category(request, foo):
