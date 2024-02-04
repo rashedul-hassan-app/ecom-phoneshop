@@ -160,6 +160,28 @@ def newsletters(request):
 
 
 def send_newsletters(request):
+    if request.method == 'POST':
+        form = SendNewsletterForm(request.POST)
+
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            receivers = form.cleaned_data['receivers'].split(',')
+            email_message = form.cleaned_data['message']
+
+            mail = EmailMessage(
+                subject, email_message, f"PhoneShop <{request.user.email}>", bcc=receivers)
+            mail.content_subtype = 'html'
+
+            if mail.send():
+                messages.success(request, 'Email sent successfully')
+            else:
+                messages.error(request, 'ERROR: Unable to send the email')
+        else:
+            for error in list(form.errors.values()):
+                messages.error(request, error)
+
+        return redirect('/newsletters/send')
+
     form = SendNewsletterForm()
     form.fields["receivers"].initial = ','.join(
         [active.email for active in SubscribedUsers.objects.all()])
