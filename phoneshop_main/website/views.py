@@ -4,11 +4,12 @@ from django.contrib import messages
 from .models import Product, Category, SubscribedUsers
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, ProductForm, NewsletterForm
+from .forms import SignUpForm, ProductForm, NewsletterForm, SendNewsletterForm
 from django import forms
 from django.contrib.auth.decorators import login_required
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.core.mail import EmailMessage
 import random
 
 
@@ -156,3 +157,11 @@ def newsletters(request):
     else:
         form = NewsletterForm(request.POST)
     return render(request, 'newsletters.html', {'form': form})
+
+
+def send_newsletters(request):
+    form = SendNewsletterForm()
+    form.fields["receivers"].initial = ','.join(
+        [active.email for active in SubscribedUsers.objects.all()])
+
+    return render(request, 'send_newsletters.html', {'form': form})
