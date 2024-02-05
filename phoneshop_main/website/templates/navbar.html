@@ -30,6 +30,10 @@
 
         <form class="d-flex">
           {% if user.is_authenticated and user.is_superuser %}
+          <a href="{% url 'send_newsletters' %}" class="btn btn-outline-dark mx-2">
+            <i class="bi bi-envelope-arrow-up-fill"></i>
+              Send Newsletters
+          </a>
           <a href="{% url 'add_product' %}" class="btn btn-outline-dark mx-2">
             <i class="bi bi-file-earmark-plus"></i>
               Add Product

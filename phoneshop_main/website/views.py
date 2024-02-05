@@ -11,6 +11,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.core.mail import EmailMessage
 import random
+from .decorators import user_is_superuser
 
 
 def index(request):
@@ -104,6 +105,7 @@ def category(request, foo):
 
 
 @login_required
+@user_is_superuser
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -159,6 +161,8 @@ def newsletters(request):
     return render(request, 'newsletters.html', {'form': form})
 
 
+@login_required
+@user_is_superuser
 def send_newsletters(request):
     if request.method == 'POST':
         form = SendNewsletterForm(request.POST)
