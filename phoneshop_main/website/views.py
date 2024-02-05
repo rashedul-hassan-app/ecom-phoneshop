@@ -191,3 +191,7 @@ def send_newsletters(request):
         [active.email for active in SubscribedUsers.objects.all()])
 
     return render(request, 'send_newsletters.html', {'form': form})
+
+
+def RobotsTxtView(request):
+    return render(request, 'robots.txt')

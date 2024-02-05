@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /cart/
+Disallow: /payments/
+Disallow: /newsletters/send/
+Disallow: /add_product/
