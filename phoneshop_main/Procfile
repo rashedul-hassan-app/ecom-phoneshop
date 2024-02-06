@@ -1,1 +1,1 @@
-web: gunicorn phoneshop_main.wsgi:application
+web: gunicorn phoneshop_main.wsgi
