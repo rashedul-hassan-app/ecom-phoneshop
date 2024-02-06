@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'https://ecom-phoneshop-82a1a7ff37b7.herokuapp.com/', 'localhost']
+    'https://ecom-phoneshop-82a1a7ff37b7.herokuapp.com/', 'localhost', 'rhdjango.pythonanywhere.com']
 
 
 # Application definition
