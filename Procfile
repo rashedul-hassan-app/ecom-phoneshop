@@ -1,1 +1,0 @@
-web: gunicorn phoneshop_main.wsgi:application
